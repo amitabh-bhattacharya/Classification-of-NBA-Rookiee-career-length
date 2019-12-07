@@ -44,28 +44,17 @@ The nba_ml.ipynb program can be executed in Jupiter notebook.
 7. Performance comparison of various models
 
 ### Questions
-
 1. During data preparation, did we discover any attribute to remove or any new attribute to add (feature engineering)? 
 
-We found the presence of high multi-collinearity among the features. The multi-collinearity degrades the performance 
-of the models. The multi-collinearity was checked by plotting collinearity matrix, computing and printing the VIF. A VIF
-value of 5 and above is considered to the presence of high collinearity. In our case we found the highest value of VIF to be 
-973 which is way higher than the collinearity definition. PCA is applied in the features to reduce the collinearity. The reduced
-the maximum VIF value to 1. The original features were twenty in number that reduced to nine after PCA. 
+We found the presence of high multi-collinearity among the features. The multi-collinearity degrades the performance of the models. The multi-collinearity was checked by plotting collinearity matrix, computing and printing the VIF. A VIF value of 5 and above is considered to the presence of high collinearity. In our case we found the highest value of VIF to be 973 which is way higher than the collinearity definition. PCA is applied in the features to reduce the collinearity. The reduced the maximum VIF value to 1. The original features were twenty in number that reduced to nine after PCA. 
 
+2. Normalizing (a.k.a., scaling) features is desirable for distance-based models, e.g., knearest neighbors. Did we try feature normalization for some of the models? If so, is there any improvement?
 
-2. Normalizing (a.k.a., scaling) features is desirable for distance-based models, e.g., knearest neighbors. Did we try feature 
-normalization for some of the models? If so, is there any improvement?
+We performed Standard Scaling in features. Standard Scaling converts a feature to have zero mean and one standard deviation. We noticed a considerable increase in performance due to Standard Scaling. The F1 score of Logistic regression increased to 0.764 from 0.725 due to Standard Scaling. Also, the training time reduced by 10% due to feature scaling.
 
-We performed Standard Scaling in features. Standard Scaling converts a feature to have zero mean and one standard 
-deviation. We noticed a considerable increase in performance due to Standard Scaling. The F1 score of Logistic regression 
-increased to 0.764 from 0.725 due to Standard Scaling. Also, the training time reduced by 10% due to feature scaling.
+3. Regularization is a common practice to battle overfitting. How is varying the penalty parameter in logistic regression affect the performance F1 score on testing? (The logistic regression penalty parameter may be ’none’, ’l1’, ’l2’ or ’elasticnet’.)
 
-3. Regularization is a common practice to battle overfitting. How is varying the penalty parameter in logistic regression affect 
-the performance F1 score on testing? (The logistic regression penalty parameter may be ’none’, ’l1’, ’l2’ or ’elasticnet’.)
-
-Regularization greatly solves the issue of overfitting. L1 regularization is linear, L2 is quadratic, elasticnet is balance
-between L1 and L2 (li_ratio), and the none is no regularization.
+Regularization greatly solves the issue of overfitting. L1 regularization is linear, L2 is quadratic, elasticnet is balance between L1 and L2 (li_ratio), and the none is no regularization.
 
 We have run the logistic regression with all regularization techniques. The results are as follows - 
 
@@ -76,8 +65,7 @@ We have run the logistic regression with all regularization techniques. The resu
 
 L2 regularization is giving a better F1 score for this example set by a marginal value.
 
-4. These models have hyperparameters. When training, experiment using GridSearch to select hyperparameters for your models. 
-What are the best hyperparameters among those we tried?
+4. These models have hyperparameters. When training, experiment using GridSearch to select hyperparameters for your models. What are the best hyperparameters among those we tried?
 
 The best hyperparameters for the various models are -
 
@@ -85,7 +73,6 @@ The best hyperparameters for the various models are -
 	. Random Forest - best hyper parameters are: {'max_depth': 20, 'n_estimators': 100}
 	. Logistic Regression -  best hyper parameters are: {'C': 1, 'penalty': 'l2', 'solver': 'saga'}
 	. ANN - best hyper parameters are: {'alpha': 0.001, 'hidden_layer_sizes': (3,), 'learning_rate_init': 0.001}
-
 
 5. Which model gave the best F1 score on testing data?
 
